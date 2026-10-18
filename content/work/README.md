@@ -14,7 +14,10 @@ export const meta = {
   order: 10,            // position on the homepage, lowest first
   summary: "One line shown on the homepage.",
   role: "Optional",
-  period: "Optional, e.g. 2025–26",
+  period: "Optional, e.g. March 2026. Shown above the entry; falls back to the type",
+  cover: "/work/your-slug.png",  // optional: image in public/work/, shown in the wide frame
+  coverAlt: "What the image shows",
+  tint: "#f6e4dc",      // optional: frame background behind the image
   hidden: false,        // true removes it from the site without deleting the file
 };
 
@@ -27,6 +30,6 @@ Anything not marked `ready` shows its status on the site.
 
 ## Inside an entry
 
-- **Images:** put them in `public/` and use `![alt text](/your-image.png)`.
+- **Images:** put them in `public/work/` and use `![alt text](/work/your-image.png)`. Without a `cover`, the homepage shows an empty frame labelled "No image yet".
 - **Components:** `<Frame caption="...">…</Frame>` draws a bordered area around a prototype or image. To make a new component available in every entry, register it in `src/mdx-components.tsx`.
 - **Rules:** the types, statuses and their labels live in `src/lib/work.ts`.

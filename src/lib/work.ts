@@ -28,6 +28,9 @@ export type EntryMeta = {
   order: number;
   role?: string;
   period?: string;
+  cover?: string;
+  coverAlt?: string;
+  tint?: string;
   hidden?: boolean;
 };
 

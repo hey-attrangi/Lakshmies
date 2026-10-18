@@ -1,22 +1,12 @@
 @import "tailwindcss";
 
-/* Provisional visual baseline. Every colour and font lives here. */
+/* Provisional visual baseline: dark, date-led stream. Every colour and font lives here. */
 :root {
-  --bg: #fafaf8;
-  --fg: #1b1b19;
-  --muted: #6b6a65;
-  --line: #e3e2dd;
-  --accent: #2a4fc4;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #131312;
-    --fg: #ebeae6;
-    --muted: #9b9a94;
-    --line: #2b2b28;
-    --accent: #93a9ff;
-  }
+  --bg: #000000;
+  --fg: #f4f4f2;
+  --muted: #7f879a;
+  --line: #2a2a2a;
+  --accent: #f0a58a;
 }
 
 @theme inline {
@@ -43,6 +33,7 @@ body {
 
 /* Long-form text inside entries. */
 .prose {
+  font-size: 1.125rem;
   line-height: 1.7;
 }
 .prose > * + * {

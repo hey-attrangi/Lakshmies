@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { StatusTag, TypeAndPeriod } from "@/components/EntryLabels";
+import { Dateline, StatusTag } from "@/components/EntryLabels";
+import { Media } from "@/components/Media";
 import { getEntries, getEntry } from "@/lib/work";
 
 export async function generateStaticParams() {
@@ -27,46 +28,42 @@ export default async function EntryPage({ params }: PageProps<"/work/[slug]">) {
 
   return (
     <article>
-      <header className="border-b border-line pt-8 pb-10">
-        <TypeAndPeriod entry={entry} />
-        <h1 className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-3xl font-semibold tracking-tight">
-          {entry.title}
+      <header className="pt-6">
+        <Dateline entry={entry} />
+        <h1 className="mt-10 max-w-2xl text-[1.75rem] leading-[1.45] tracking-[-0.01em]">
+          <span className="underline decoration-2 underline-offset-[6px]">{entry.title}</span>
+          {" — "}
+          {entry.summary}
           <StatusTag entry={entry} />
         </h1>
-        <p className="mt-3 text-lg text-muted">{entry.summary}</p>
         {entry.role && (
-          <p className="mt-4 text-sm">
-            <span className="text-muted">Role </span>
-            {entry.role}
+          <p className="mt-6 text-muted">
+            Role <span className="text-fg">{entry.role}</span>
           </p>
         )}
+        <div className="mt-14">
+          <Media entry={entry} priority />
+        </div>
       </header>
 
-      <div className="prose py-10">
+      <div className="prose max-w-2xl py-16">
         <Body />
       </div>
 
-      <nav aria-label="More work" className="grid grid-cols-2 gap-6 border-t border-line py-8 text-sm">
+      <nav aria-label="More work" className="grid max-w-2xl grid-cols-2 gap-6 border-t border-line py-10">
         <div>
           {prev && (
             <Link href={`/work/${prev.slug}`} className="group block">
-              <span className="font-mono text-xs text-muted">← Previous</span>
-              <span className="mt-1 block group-hover:text-accent">{prev.title}</span>
+              <span className="text-sm text-muted">← Previous</span>
+              <span className="mt-1 block text-lg group-hover:underline">{prev.title}</span>
             </Link>
           )}
         </div>
         <div className="text-right">
-          {next ? (
-            <Link href={`/work/${next.slug}`} className="group block">
-              <span className="font-mono text-xs text-muted">Next →</span>
-              <span className="mt-1 block group-hover:text-accent">{next.title}</span>
-            </Link>
-          ) : (
-            <Link href="/" className="group block">
-              <span className="font-mono text-xs text-muted">Back</span>
-              <span className="mt-1 block group-hover:text-accent">All work</span>
-            </Link>
-          )}
+          <Link href={next ? `/work/${next.slug}` : "/"} className="group block">
+            <span className="text-sm text-muted">{next ? "Next →" : "Back"}</span>
+            <span className="mt-1 block text-lg group-hover:underline">{next ? next.title : "All work"}</span>
+          </Link>
         </div>
       </nav>
     </article>

@@ -13,14 +13,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en">
       <body>
-        <div className="mx-auto flex min-h-screen max-w-2xl flex-col px-5 sm:px-8">
+        <div className="flex min-h-screen max-w-[66rem] flex-col px-5 sm:px-11">
           <header className="py-8">
-            <Link href="/" className="font-medium hover:text-accent">
+            <Link href="/" className="text-lg hover:underline">
               {site.name}
             </Link>
           </header>
           <main className="flex-1">{children}</main>
-          <footer className="py-10 font-mono text-xs text-muted">Work in progress</footer>
+          <footer className="border-t border-line py-10 text-sm text-muted">Work in progress</footer>
         </div>
       </body>
     </html>
